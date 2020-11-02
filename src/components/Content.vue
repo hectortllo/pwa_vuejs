@@ -19,6 +19,7 @@ export default {
   created () {
     api.getPlaces()
       .then(places => {
+        console.log(places)
         this.places = places
       })
   }

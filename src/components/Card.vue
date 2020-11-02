@@ -6,9 +6,11 @@
         <img :src="place.image.url" alt="">
       </div>
       <div class="card-information">
-        <p>{{ place.name }}</p>
+        <p><strong>{{ place.name }}</strong></p>
         <p>{{ place.description }}</p>
         <p>{{ place.location }}</p>
+        <p><a><i class="far fa-thumbs-up"></i></a> {{ place.score }}</p>
+        <a class="rounded"><i class="fas fa-heart"></i></a>
       </div>
     </div>
   </div>
@@ -62,8 +64,26 @@ export default {
     width: 100%;
   }
 
-  .card-information p {
-    margin: 0;
+  .rounded {
+    background-color: #31b189;
+    border-radius: 50%;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a:hover {
+    background-color: #7ace67;;
+  }
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .fas {
+    color:#feffff;
+    margin-top: 10px;
   }
 
   @media (min-width: 480px) {
