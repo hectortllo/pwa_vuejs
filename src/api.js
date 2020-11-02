@@ -5,10 +5,12 @@ async function getPlaces () {
   return res.json()
 }
 
-function updatePlace (id, data) {
+function updatePlace (data) {
+  let id = data.place.id
+  console.log(data)
   fetch(`${url}/places/${id}`, {
     method: 'PUT',
-    body: data
+    body: JSON.stringify(data)
   })
 }
 

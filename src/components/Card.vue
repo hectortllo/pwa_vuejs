@@ -10,20 +10,40 @@
         <p>{{ place.description }}</p>
         <p>{{ place.location }}</p>
         <p><a><i class="far fa-thumbs-up"></i></a> {{ place.score }}</p>
-        <a class="rounded"><i class="fas fa-heart"></i></a>
+        <a @click="updatePlace(place)" class="rounded"><i class="fas fa-heart"></i></a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
+// import api from './../api'
 export default {
   name: 'Card',
   props: {
     places: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    updatePlace (place) {
+      fetch(`http://localhost:3000/places/${place.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          place: {
+            id: place.id,
+            image: place.image.url,
+            name: place.name,
+            description: place.description,
+            location: place.location,
+            score: place.score += 1
+          }
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
     }
   }
 }
