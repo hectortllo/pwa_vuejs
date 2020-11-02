@@ -17,7 +17,7 @@
 </template>
 
 <script>
-// import api from './../api'
+import api from './../api'
 export default {
   name: 'Card',
   props: {
@@ -27,23 +27,15 @@ export default {
     }
   },
   methods: {
-    updatePlace (place) {
-      fetch(`http://localhost:3000/places/${place.id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          place: {
-            id: place.id,
-            image: place.image.url,
-            name: place.name,
-            description: place.description,
-            location: place.location,
-            score: place.score += 1
-          }
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+    updatePlace (editPlace) {
+      const place = {
+        id: editPlace.id,
+        name: editPlace.name,
+        description: editPlace.description,
+        location: editPlace.location,
+        score: editPlace.score += 1
+      }
+      api.updatePlace(place)
     }
   }
 }
@@ -67,6 +59,7 @@ export default {
     height: 500px;
     width: inherit;
     margin: inherit;
+    margin-bottom: 50px;
   }
 
   .card-image {
@@ -106,7 +99,7 @@ export default {
     margin-top: 10px;
   }
 
-  @media (min-width: 480px) {
+  @media (min-width: 680px) {
     .card {
       display: flex;
       justify-content: center;
@@ -114,9 +107,10 @@ export default {
     .all-cards {
       width: 46%;
       margin: 2%;
+      margin-bottom: 50px;
     }
   }
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     .card {
       display: flex;
       justify-content: center;
@@ -124,6 +118,7 @@ export default {
     .all-cards {
       width: 29%;
       margin: 2%;
+      margin-bottom: 50px;
     }
   }
 </style>

@@ -6,11 +6,13 @@ async function getPlaces () {
 }
 
 function updatePlace (data) {
-  let id = data.place.id
-  console.log(data)
+  let id = data.id
   fetch(`${url}/places/${id}`, {
     method: 'PUT',
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
 }
 
